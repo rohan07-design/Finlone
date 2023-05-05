@@ -21,12 +21,13 @@ public class EmiCalculatorController {
 		double emi = (principalAmount*monthlyInterest*Math.pow(1+monthlyInterest,months))/(Math.pow(1+monthlyInterest,months)-1);
 		
 		double interestAmount = emi * months - principalAmount;
-		double totalAmount = emi * months;
+		double totalAmount = (emi * months)+100;
 		
 		m.addAttribute("principalAmount",principalAmount);
 		m.addAttribute("totalInterset",interestAmount);
 		m.addAttribute("totalAmount",totalAmount);
 		m.addAttribute("emi",emi);
+		
 		return "dashboardPages/emiCalculator"; 
 	}
 }

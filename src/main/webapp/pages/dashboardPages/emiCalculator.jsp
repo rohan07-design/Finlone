@@ -202,9 +202,10 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Interest Rate(% P.A.) <i class="las la-coins"></i></label>
-                            <input type="number" class="form-control" id="exampleInputPassword1" readonly name="interest" placeholder="3%">
+                            <input type="number" class="form-control" id="exampleInputPassword1" readonly name="interest" placeholder="3%" value=3>
                         </div>
                         <button type="submit" class="btn bg-gradient-primary mt-3">Calculate Interest <i class="las la-arrow-circle-right"></i></button>
+                        <p>** The 100Rs Processing fees will be added to total amount.</p>
                     </form>
                 </div>
                 <div class="col col-6 text-center" id="calcResult">
