@@ -41,8 +41,9 @@
     content="Material Dashboard 2 is a beautiful Bootstrap 5 admin dashboard with a large number of components, designed to look beautiful and organized. If you are looking for a tool to manage and visualize data about your business, this dashboard is the thing for you." />
   <meta property="og:site_name" content="Creative Tim" />
 
-  <link rel="stylesheet" type="text/css"
+  <!-- <link rel="stylesheet" type="text/css"
     href="../../../fonts.googleapis.com/cssa882.css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+-->
 
   <link href="css/nucleo-icons.css" rel="stylesheet" />
   <link href="css/nucleo-svg.css" rel="stylesheet" />

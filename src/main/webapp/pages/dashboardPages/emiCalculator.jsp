@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/pages/billing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 06:07:43 GMT -->
 <!-- Added by HTTrack -->
@@ -41,9 +43,9 @@
         content="Material Dashboard 2 is a beautiful Bootstrap 5 admin dashboard with a large number of components, designed to look beautiful and organized. If you are looking for a tool to manage and visualize data about your business, this dashboard is the thing for you." />
     <meta property="og:site_name" content="Creative Tim" />
 
-    <link rel="stylesheet" type="text/css"
-        href="../../../../fonts.googleapis.com/cssa882.css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-
+    <!--  <link rel="stylesheet" type="text/css"
+        href="../fonts.googleapis.com/cssa882.css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+-->
     <link href="../css/nucleo-icons.css" rel="stylesheet" />
     <link href="../css/nucleo-svg.css" rel="stylesheet" />
 
@@ -98,10 +100,6 @@
             box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
             
         }
-
-        #calcResult .one {  
-        }
-
 
         .monthlyLoan {
             margin: 20px 0px;
@@ -192,19 +190,19 @@
         <div id="container">
             <div class="row">
                 <div class="col col-6" id="calcForm">
-                    <form>
+                    <form action="/dashboardPages/emiCalculator" method="post" modelAttribute="loan">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Loan Amount <i class="las la-rupee-sign"></i></label>
-                            <input type="number" class="form-control" id="exampleInputEmail1"
+                            <input type="number" class="form-control" id="exampleInputEmail1" name="loanAmount"
                                 aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Tenture(Years) <i class="las la-calendar"></i></label>
-                            <input type="number" class="form-control" id="exampleInputPassword1">
+                            <input type="number" class="form-control" id="exampleInputPassword1" name="years">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Interest Rate(% P.A.) <i class="las la-coins"></i></label>
-                            <input type="number" class="form-control" id="exampleInputPassword1">
+                            <input type="number" class="form-control" id="exampleInputPassword1" readonly name="interest" placeholder="3%">
                         </div>
                         <button type="submit" class="btn bg-gradient-primary mt-3">Calculate Interest <i class="las la-arrow-circle-right"></i></button>
                     </form>
@@ -212,19 +210,19 @@
                 <div class="col col-6 text-center" id="calcResult">
                     <div class="one mb-3">
                         <p class="monthlyLoan">Monthly Loan EMI</p>
-                        <h3><sup>&#8377;</sup>19,223</h3>
+                        <h3><sup>&#8377;</sup>${String.format('%.2f',emi)}</h3>
                     </div>
                     <div class="one mb-3">
                         <p class="monthlyLoan">Principal Amount</p>
-                        <h3><sup>&#8377;</sup>25,00,000</h3>
+                        <h3><sup>&#8377;</sup>${String.format('%.2f',principalAmount)}</h3>
                     </div>
                     <div class="one mb-3">
                         <p class="monthlyLoan">Interest Amount</p>
-                        <h3><sup>&#8377;</sup>44,20,221</h3>
+                        <h3><sup>&#8377;</sup>${String.format('%.2f',totalInterset)}</h3>
                     </div>
                     <div class="one mb-3">
                         <p class="monthlyLoan">Total Amount Payable</p>
-                        <h3><sup>&#8377;</sup>69,20,221</h3>
+                        <h3><sup>&#8377;</sup>${String.format('%.2f',totalAmount)}</h3>
                     </div>
                 </div>
             </div>
