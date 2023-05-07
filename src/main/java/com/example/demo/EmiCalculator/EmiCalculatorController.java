@@ -1,5 +1,7 @@
 package com.example.demo.EmiCalculator;
 
+import java.text.NumberFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,11 @@ public class EmiCalculatorController {
 		
 		double interestAmount = emi * months - principalAmount;
 		double totalAmount = (emi * months)+100;
+		
+		NumberFormat nf = NumberFormat.getNumberInstance();
+		nf.setGroupingUsed(true);
+		String formattedLoanAmount = nf.format(principalAmount);
+
 		
 		m.addAttribute("principalAmount",principalAmount);
 		m.addAttribute("totalInterset",interestAmount);

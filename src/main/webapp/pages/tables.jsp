@@ -41,9 +41,6 @@
     content="Material Dashboard 2 is a beautiful Bootstrap 5 admin dashboard with a large number of components, designed to look beautiful and organized. If you are looking for a tool to manage and visualize data about your business, this dashboard is the thing for you." />
   <meta property="og:site_name" content="Creative Tim" />
 
-  <link rel="stylesheet" type="text/css"
-    href="../../../fonts.googleapis.com/cssa882.css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-
   <link href="css/nucleo-icons.css" rel="stylesheet" />
   <link href="css/nucleo-svg.css" rel="stylesheet" />
 
@@ -360,52 +357,60 @@
     </nav>
 
     <div class=" me-5 ms-3" id="forms">
-      <form class="row g-3">
+      <form class="row g-3" action="addApplicant" method="post">
         <div class="col-12 text-center">
           <label for="inputApplicant" class="form-label">Select Applicant <i class="las la-user-friends"></i></label>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <input class="form-check-input" type="radio" name="typeOfApplicant" id="inlineRadio1" value="agent">
             <label class="form-check-label" for="inlineRadio1">Agent</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <input class="form-check-input" type="radio" name="typeOfApplicant" id="inlineRadio2" value="customer">
             <label class="form-check-label" for="inlineRadio2">Customer</label>
           </div>
         </div>
 
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Name <i class="las la-user"></i></label>
-          <input type="text" class="form-control" id="inputName">
+          <input type="text" name="name" class="form-control" id="inputName">
         </div>
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Email <i class="las la-envelope"></i></label>
-          <input type="email" class="form-control" id="inputEmail4">
+          <input type="email" name="email" class="form-control" id="inputEmail4">
         </div>
 
         <div class="col-md-6 mt-5">
           <label for="inputAddress" class="form-label">Address <i class="las la-map-marked-alt"></i></label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="">
+          <input type="text" name="address" class="form-control" id="inputAddress" placeholder="">
         </div>
 
         <div class="col-md-6 mt-5">
           <label for="inputAddress2" class="form-label">ID Proof <i class="las la-address-card"></i></label>
             <select class="form-select">
-              <option value="AadharCard">Aadhar Card</option>
+              <option value="AadharCard" style="padding-left: 20px;">Aadhar Card</option>
               <option value="PanCard">Pan Card</option>
               <option value="Driving">Driving Licence</option>
             </select>
         </div>
         <div class="col-md-3 mt-5" id="formFile">
           <label for="formFile" class="form-label">Upload ID Proof <i class="las la-id-badge"></i></label>
-          <input class="form-control" type="file" >
+          <input class="form-control" type="file" name="proof">
         </div>
         <div class="col-md-3 mt-5">
           <label for="inputCity" class="form-label">City <i class="las la-map-marker"></i></label>
-          <input type="text" class="form-control" id="inputCity">
+          <input type="text" class="form-control" name="city" id="inputCity">
         </div>
-        <div class="col-md-6 mt-5">
+        <div class="col-md-3 mt-5">
           <label for="inputZip" class="form-label">Phone Number <i class="las la-mobile"></i></label>
-          <input type="text" class="form-control">
+          <input type="text" name="number" class="form-control">
+        </div>
+        <div class="col-md-3 mt-5">
+          <label for="status" class="form-label">Status <i class="las la-address-card"></i></label>
+            <select class="form-select">
+              <option value="AadharCard" style="padding-left: 20px;">Unverified</option>
+              <option value="PanCard">Verified</option>
+             
+            </select>
         </div>
         
         <div class="col-12 mt-5">

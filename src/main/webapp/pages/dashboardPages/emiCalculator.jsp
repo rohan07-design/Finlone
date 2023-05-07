@@ -100,6 +100,10 @@
             box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
             
         }
+        
+        #cancleButtons {
+        	color: #fff;
+        }
 
         .monthlyLoan {
             margin: 20px 0px;
@@ -205,7 +209,9 @@
                             <input type="number" class="form-control" id="exampleInputPassword1" readonly name="interest" placeholder="3%" value=3>
                         </div>
                         <button type="submit" class="btn bg-gradient-primary mt-3">Calculate Interest <i class="las la-arrow-circle-right"></i></button>
-                        <p>** The 100Rs Processing fees will be added to total amount.</p>
+                        <button type="submit" class="btn bg-gradient-primary mt-3" id="cancleButtons"><a href="/">Cancle</a></button>
+                        
+                        <p>** The &#8377;100 Processing fees will be added to total amount.</p>
                     </form>
                 </div>
                 <div class="col col-6 text-center" id="calcResult">
