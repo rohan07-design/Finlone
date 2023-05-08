@@ -1,10 +1,21 @@
 package com.example.demo;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo.AddApplicant.AddedApplicant;
 
 @Controller
 public class AllController {
+	
+	@Autowired
+	CommonService c1;
+	
 
 	 @RequestMapping("/")
 	 public String dashboard()
@@ -19,9 +30,11 @@ public class AllController {
 	 }
 	 
 	 @RequestMapping("/billing")
-	 public String loanDetails()
+	 public String loanDetails(ModelMap m)
 	 {
-		  return "billing";
+		 List<AddedApplicant> l1 = c1.getAllApplicants();
+		 m.addAttribute("list",l1);
+		 return "billing";
 	 }
 	 
 	 @RequestMapping("/pending_amount")

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/pages/billing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 06:07:43 GMT -->
 <!-- Added by HTTrack -->
@@ -41,9 +43,7 @@
     content="Material Dashboard 2 is a beautiful Bootstrap 5 admin dashboard with a large number of components, designed to look beautiful and organized. If you are looking for a tool to manage and visualize data about your business, this dashboard is the thing for you." />
   <meta property="og:site_name" content="Creative Tim" />
 
-  <link rel="stylesheet" type="text/css"
-    href="../../../fonts.googleapis.com/cssa882.css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-
+ 
   <link href="css/nucleo-icons.css" rel="stylesheet" />
   <link href="css/nucleo-svg.css" rel="stylesheet" />
 
@@ -392,72 +392,19 @@
           </tr>
         </thead>
         <tbody>
+        <c:forEach items="${list }" var="e">
           <tr>
-            <th scope="row" class="id">1</th>
-            <td class="name">Mark</td>
-            <td class="number">123456789</td>
-            <td class="city">Pune</td>
-            <td class="email">mark@gmail.com</td>
-            <td class="user">Customer</td>
-            <td class="amount">120000 <i class="las la-rupee-sign"></i></td>
+            <th scope="row" class="id">${e.id}</th>
+            <td class="name">${e.name }</td>
+            <td class="number">${e.number }</td>
+            <td class="city">${e.city }</td>
+            <td class="email">${e.email }</td>
+            <td class="user">${e.typeOfApplicant }</td>
+            <td class="amount">${e.loanAmount } <i class="las la-rupee-sign"></i></td>
             <td><button class="btn btn-sm btn-warning"><span class="bttn-text">Verify</span> <i class="las la-check-circle la-2x"></i></button>
             </td>
           </tr>
-          <tr>
-            <th scope="row" class="id">1</th>
-            <td class="name">Mark</td>
-            <td class="number">123456789</td>
-            <td class="city">Pune</td>
-            <td class="email">mark@gmail.com</td>
-            <td class="user">Customer</td>
-            <td class="amount">120000 <i class="las la-rupee-sign"></i></td>
-            <td><button class="btn btn-sm btn-warning"><span class="bttn-text">Verify</span> <i class="las la-check-circle la-2x"></i></button>
-            </td></td>
-          </tr>
-          <tr>
-            <th scope="row" class="id">1</th>
-            <td class="name">Mark</td>
-            <td class="number">123456789</td>
-            <td class="city">Pune</td>
-            <td class="email">mark@gmail.com</td>
-            <td class="user">Customer</td>
-            <td class="amount">120000 <i class="las la-rupee-sign"></i></td>
-            <td><button class="btn btn-sm btn-warning"><span class="bttn-text">Verify</span> <i class="las la-check-circle la-2x"></i></button>
-            </td></td>
-          </tr>
-          <tr>
-            <th scope="row" class="id">1</th>
-            <td class="name">Mark</td>
-            <td class="number">123456789</td>
-            <td class="city">Pune</td>
-            <td class="email">mark@gmail.com</td>
-            <td class="user">Customer</td>
-            <td class="amount">120000 <i class="las la-rupee-sign"></i></td>
-            <td><button class="btn btn-sm btn-warning"><span class="bttn-text">Verify</span> <i class="las la-check-circle la-2x"></i></button>
-            </td></td>
-          </tr>
-          <tr>
-            <th scope="row" class="id">1</th>
-            <td class="name">Mark</td>
-            <td class="number">123456789</td>
-            <td class="city">Pune</td>
-            <td class="email">mark@gmail.com</td>
-            <td class="user">Customer</td>
-            <td class="amount">120000 <i class="las la-rupee-sign"></i></td>
-            <td><button class="btn btn-sm btn-warning"><span class="bttn-text">Verify</span> <i class="las la-check-circle la-2x"></i></button>
-            </td></td>
-          </tr>
-          <tr>
-            <th scope="row" class="id">1</th>
-            <td class="name">Mark</td>
-            <td class="number">123456789</td>
-            <td class="city">Pune</td>
-            <td class="email">mark@gmail.com</td>
-            <td class="user">Customer</td>
-            <td class="amount">120000 <i class="las la-rupee-sign"></i></td>
-            <td><button class="btn btn-sm btn-warning"><span class="bttn-text ms-auto">Verify</span> <i class="las la-check-circle la-2x"></i></button>
-            </td></td>
-          </tr>
+          </c:forEach>
         </tbody>
       </table> 
     </div>

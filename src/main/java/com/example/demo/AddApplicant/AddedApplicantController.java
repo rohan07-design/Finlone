@@ -1,19 +1,58 @@
 package com.example.demo.AddApplicant;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class AddedApplicantController {
 
 	@Autowired
-	AddedApplicantService s1;
+	AddedApplicantRepo d1;
 	
 	@PostMapping("/addApplicant")
-	public String setApplicantData(@ModelAttribute("a1") AddedApplicant a1) {
-		s1.setApplicant(a1);
+	public String setApplicantData(@RequestParam("typeOfApplicant") String typeOfApplicant,
+			@RequestParam("name") String name,
+			@RequestParam("email") String email,
+			@RequestParam("address") String address,
+			@RequestParam("typeOfProof") String typeOfProof,
+			@RequestParam("city") String city,
+			@RequestParam("number") String number,
+			@RequestParam("status") String status,
+			@RequestParam("loanAmount") int loanAmount,
+			@RequestParam("proof") MultipartFile proof) throws Exception {
+			
+			AddedApplicant a1 = new AddedApplicant();
+			a1.setTypeOfApplicant(typeOfApplicant);
+			a1.setName(name);
+			a1.setEmail(email);
+			a1.setAddress(address);
+			a1.setTypeOfProof(typeOfProof);
+			a1.setCity(city);
+			a1.setNumber(number);
+			a1.setLoanAmount(loanAmount);
+			a1.setStatus(status);
+			a1.setFilecontents(proof.getBytes());
+			String path = "C:\\Users\\Rohan Parande\\eclipse-workspace\\Project\\src\\main\\resources\\static\\documents";
+			String documentName = proof.getOriginalFilename();
+			System.out.println(path+" "+proof);
+			byte[] b = proof.getBytes();
+			try {
+				BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(path+"/"+documentName));
+				fout.write(b);
+				fout.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			d1.save(a1);
+			
 		return "notifications/addedApplicantNotify";
 	}
 }

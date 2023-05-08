@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/pages/tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 06:07:42 GMT -->
 <!-- Added by HTTrack -->
@@ -357,7 +360,7 @@
     </nav>
 
     <div class=" me-5 ms-3" id="forms">
-      <form class="row g-3" action="addApplicant" method="post">
+      <form class="row g-3" action="addApplicant" method="post" enctype="multipart/form-data">
         <div class="col-12 text-center">
           <label for="inputApplicant" class="form-label">Select Applicant <i class="las la-user-friends"></i></label>
           <div class="form-check form-check-inline">
@@ -379,20 +382,20 @@
           <input type="email" name="email" class="form-control" id="inputEmail4">
         </div>
 
-        <div class="col-md-6 mt-5">
+        <div class="col-md-4 mt-5">
           <label for="inputAddress" class="form-label">Address <i class="las la-map-marked-alt"></i></label>
           <input type="text" name="address" class="form-control" id="inputAddress" placeholder="">
         </div>
 
-        <div class="col-md-6 mt-5">
+        <div class="col-md-4 mt-5">
           <label for="inputAddress2" class="form-label">ID Proof <i class="las la-address-card"></i></label>
-            <select class="form-select">
+            <select class="form-select" name="typeOfProof">
               <option value="AadharCard" style="padding-left: 20px;">Aadhar Card</option>
               <option value="PanCard">Pan Card</option>
               <option value="Driving">Driving Licence</option>
             </select>
         </div>
-        <div class="col-md-3 mt-5" id="formFile">
+        <div class="col-md-4 mt-5" id="formFile">
           <label for="formFile" class="form-label">Upload ID Proof <i class="las la-id-badge"></i></label>
           <input class="form-control" type="file" name="proof">
         </div>
@@ -406,13 +409,15 @@
         </div>
         <div class="col-md-3 mt-5">
           <label for="status" class="form-label">Status <i class="las la-address-card"></i></label>
-            <select class="form-select">
-              <option value="AadharCard" style="padding-left: 20px;">Unverified</option>
-              <option value="PanCard">Verified</option>
-             
+            <select class="form-select" name="status">
+              <option value="unverified" style="padding-left: 20px;">Unverified</option>
+              <option value="verified">Verified</option> 
             </select>
         </div>
-        
+        <div class="col-md-3 mt-5">
+        	<label for="inputZip" class="form-label">Requested Amount <i class="las la-rupee-sign"></i></label>
+          	<input type="number" name="loanAmount" class="form-control">
+        </div>
         <div class="col-12 mt-5">
           <button type="submit" class="btn btn-primary">Register</button>
         </div>

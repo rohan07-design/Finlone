@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class AddedApplicant {
@@ -19,7 +20,23 @@ public class AddedApplicant {
 	private String city;
 	private String number;
 	private String status;
+	private int loanAmount;
 	
+	public int getLoanAmount() {
+		return loanAmount;
+	}
+	public void setLoanAmount(int loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+	@Lob
+	private byte[] filecontents;
+	
+	public byte[] getFilecontents() {
+		return filecontents;
+	}
+	public void setFilecontents(byte[] filecontents) {
+		this.filecontents = filecontents;
+	}
 	public int getId() {
 		return id;
 	}
