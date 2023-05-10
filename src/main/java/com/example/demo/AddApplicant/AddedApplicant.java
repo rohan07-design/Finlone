@@ -16,7 +16,6 @@ public class AddedApplicant {
 	private String email;
 	private String address;
 	private String typeOfProof;
-	private String proof;
 	private String city;
 	private String number;
 	private String status;
@@ -73,12 +72,7 @@ public class AddedApplicant {
 	public void setTypeOfProof(String typeOfProof) {
 		this.typeOfProof = typeOfProof;
 	}
-	public String getProof() {
-		return proof;
-	}
-	public void setProof(String proof) {
-		this.proof = proof;
-	}
+	
 	public String getCity() {
 		return city;
 	}

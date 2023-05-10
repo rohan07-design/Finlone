@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/pages/tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 06:07:42 GMT -->

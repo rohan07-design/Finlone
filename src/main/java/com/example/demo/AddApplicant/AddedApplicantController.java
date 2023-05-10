@@ -5,7 +5,10 @@ import java.io.FileOutputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +18,9 @@ public class AddedApplicantController {
 
 	@Autowired
 	AddedApplicantRepo d1;
+	
+	@Autowired
+	AddedApplicantService s1;
 	
 	@PostMapping("/addApplicant")
 	public String setApplicantData(@RequestParam("typeOfApplicant") String typeOfApplicant,
@@ -41,6 +47,8 @@ public class AddedApplicantController {
 			a1.setFilecontents(proof.getBytes());
 			String path = "C:\\Users\\Rohan Parande\\eclipse-workspace\\Project\\src\\main\\resources\\static\\documents";
 			String documentName = proof.getOriginalFilename();
+//			documentName = documentName.substring(0, documentName.lastIndexOf(".")) + "_" + a1.getId() + documentName.substring(documentName.lastIndexOf("."));
+
 			System.out.println(path+" "+proof);
 			byte[] b = proof.getBytes();
 			try {
@@ -54,5 +62,11 @@ public class AddedApplicantController {
 			d1.save(a1);
 			
 		return "notifications/addedApplicantNotify";
+	}
+	
+	@GetMapping("billing/{id}")
+	public String getUserById(@PathVariable int id, ModelMap m) {
+		s1.getUserId(id);
+		return "verifyDocuments";
 	}
 }
