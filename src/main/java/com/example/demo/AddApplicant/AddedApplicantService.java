@@ -8,6 +8,8 @@ public interface AddedApplicantService {
 
 	public AddedApplicant getUserId(int id);
 
+	void updateData(int id);
+
 //	List getDocuments(int id);
 
 }

@@ -178,35 +178,35 @@ img:hover {
 		<div class="collapse navbar-collapse  w-auto "
 			id="sidenav-collapse-main">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link text-white " href="../">
+				<li class="nav-item"><a class="nav-link text-white " href="../../">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="las la-th-large la-2x"></i>
 						</div> <span class="nav-link-text ms-1">Dashboard</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="tables">
+					href="../tables">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="las la-user-plus la-2x"></i>
 						</div> <span class="nav-link-text ms-1">Add Applicant</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
-					href="billing">
+					href="../billing">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="las la-coins la-2x"></i>
 						</div> <span class="nav-link-text ms-1">Loan Details</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
-					href="pending_amount">
+					href="../pending_amount">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="las la-file-invoice-dollar la-2x"></i>
 						</div> <span class="nav-link-text ms-1">Pending Amount</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="collectedLoans">
+					href="../collectedLoans">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="las la-rupee-sign la-2x"></i>
@@ -373,7 +373,7 @@ img:hover {
 		</nav>
 		<!-- Starts from here-->
 		<div id="verifyDocuments">
-			<form class="row g-3">
+			<form class="row g-3" action="../verifiedUser" method="post">
 				<div class="col-md-8">
 					<div class="d-flex flex-row mb-3">
 						<div class="col-lg-6">
@@ -413,11 +413,16 @@ img:hover {
 						<p class="userInfo">${command.typeOfProof }</p>
 					</div>
 					</div>
+					<div class="d-flex flex-row mb-3">
 					<div class="col">
 						<label for="inputZip" class="form-label">Requested Loan
 							Amount &#8377;
 						</label>
 						<p class="userInfo">${command.loanAmount }&#8377;</p>
+					</div>
+					<div class="col">
+						<input type="text" value="${command.id }" name="id" hidden/>
+					</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -429,7 +434,7 @@ img:hover {
 				</div>
 
 				<div class="col-12">
-					<button type="submit" class="btn btn-success" style="width:30%";>Verify</button>
+					<button type="submit" class="btn btn-success" style="width:30%;">Verify</button>
 				</div>
 			</form>
 		</div>

@@ -7,14 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.AddApplicant.AddedApplicant;
+import com.example.demo.AddApplicant.AddedApplicantRepo;
 
 @Controller
 public class AllController {
 	
 	@Autowired
 	CommonService c1;
+	
+	@Autowired
+	AddedApplicantRepo r1;
 	
 
 	 @RequestMapping("/")
