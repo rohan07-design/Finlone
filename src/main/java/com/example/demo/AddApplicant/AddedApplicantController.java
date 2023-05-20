@@ -2,6 +2,10 @@ package com.example.demo.AddApplicant;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,21 +48,30 @@ public class AddedApplicantController {
 			a1.setNumber(number);
 			a1.setLoanAmount(loanAmount);
 			a1.setStatus(status);
-			a1.setFilecontents(proof.getBytes());
-			String path = "C:\\Users\\Rohan Parande\\eclipse-workspace\\Project\\src\\main\\resources\\static\\documents";
+			
+			
 			String documentName = proof.getOriginalFilename();
-//			documentName = documentName.substring(0, documentName.lastIndexOf(".")) + "_" + a1.getId() + documentName.substring(documentName.lastIndexOf("."));
+///			documentName = documentName.substring(0, documentName.lastIndexOf(".")) + "_" + a1.getId() + documentName.substring(documentName.lastIndexOf("."));
 
-			System.out.println(path+" "+proof);
+//			System.out.println(path+" "+proof);
 			byte[] b = proof.getBytes();
+			
+			// Generate the image name
+	        String imageName = a1.getName() + "_" + a1.getNumber();
+	        
+	        String path = "C:\\Users\\Rohan Parande\\eclipse-workspace\\Project\\src\\main\\resources\\static\\documents\\"+ imageName+".jpeg";
+			
+	        Path  imageFilePath = Paths.get(imageName);
+	        Files.write(imageFilePath, b);
 			try {
-				BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(path+"/"+documentName));
+				BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(path));
 				fout.write(b);
 				fout.close();
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			
+			a1.setFilecontents(proof.getBytes());
+			a1.setFileName(imageName);
 			d1.save(a1);
 			
 		return "notifications/addedApplicantNotify";
@@ -66,7 +79,11 @@ public class AddedApplicantController {
 	
 	@GetMapping("billing/{id}")
 	public String getUserById(@PathVariable int id, ModelMap m) {
-		s1.getUserId(id);
+		AddedApplicant allData = s1.getUserId(id);
+		AddedApplicant data = d1.findById(id)
+		            .orElseThrow(() -> new IllegalArgumentException("Invalid data id"));
+		
+		m.addAttribute("command", data);
 		return "verifyDocuments";
 	}
 }

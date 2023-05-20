@@ -20,7 +20,14 @@ public class AddedApplicant {
 	private String number;
 	private String status;
 	private int loanAmount;
+	private String fileName;
 	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public int getLoanAmount() {
 		return loanAmount;
 	}

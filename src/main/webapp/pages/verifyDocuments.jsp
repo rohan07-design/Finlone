@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/pages/billing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 06:07:43 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <!-- /Added by HTTrack -->
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
 <meta charset="utf-8" />
@@ -14,7 +14,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="apple-touch-icon" sizes="76x76"
 	href="../assets/img/apple-icon.png">
-<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link rel="icon" type="image/png" href="img/favicon.png">
 <title>Material Dashboard 2 by Creative Tim</title>
 
 
@@ -47,8 +47,8 @@
 <meta property="og:site_name" content="Creative Tim" />
 
 
-<link href="css/nucleo-icons.css" rel="stylesheet" />
-<link href="css/nucleo-svg.css" rel="stylesheet" />
+<link href="../css/nucleo-icons.css" rel="stylesheet" />
+<link href="../css/nucleo-svg.css" rel="stylesheet" />
 
 <script src="../../../kit.fontawesome.com/42d5adcbca.js"
 	crossorigin="anonymous"></script>
@@ -57,8 +57,8 @@
 	href="../../../fonts.googleapis.com/iconcc0c.css?family=Material+Icons+Round"
 	rel="stylesheet">
 
-<link id="pagestyle" href="css/material-dashboard.min1bb8.css?v=3.0.5"
-	rel="stylesheet" />
+<link id="pagestyle"
+	href="../css/material-dashboard.min1bb8.css?v=3.0.5" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 <style>
@@ -66,44 +66,28 @@
 	opacity: 0 !important
 }
 
-#allList {
-	margin: 2% 3%;
-	background-color: #fff;
-	padding: 2% 5%;
+#verifyDocuments {
+	background: #fff;
+	margin: 3% 3%;
 	border-radius: 30px;
+	padding: 3% 3%;
 }
 
-#allList th {
+.form-label {
+	font-size: 18px;
 	color: #000;
 }
 
-@media ( max-width : 1370px) {
-	#allList .bttn-text {
-		display: none;
-	}
+.userInfo {
+	font-size: 20px;
 }
 
-@media ( max-width : 959px) {
-	#allList .headingText {
-		display: none;
-	}
-	#allList tbody {
-		font-size: 12px;
-		font-weight: 500;
-	}
-	#allList .city, .email {
-		display: none;
-	}
+img {
+	margin-top: 3%;
 }
 
-@media ( max-width : 444px) {
-	#allList button {
-		width: 10px;
-	}
-	#allList tbody tr i {
-		text-align: center;
-		width: 100%;
-	}
+img:hover {
+	transform: scale(1.3);
 }
 </style>
 <script>
@@ -166,7 +150,7 @@
 
 
 <script defer data-site="demos.creative-tim.com"
-	src="../../../api.nepcha.com/js/nepcha-analytics.js"></script>
+	src="js/nepcha-analytics.js"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -190,7 +174,7 @@
 				class="ms-1 font-weight-bold text-white" style="font-size: 20px;">Finlone</span>
 			</a>
 		</div>
-		<hr class="horizontal light mt-0 mb-2">
+		<hr class="horizontal light mt-0 mb-0">
 		<div class="collapse navbar-collapse  w-auto "
 			id="sidenav-collapse-main">
 			<ul class="navbar-nav">
@@ -207,14 +191,14 @@
 							<i class="las la-user-plus la-2x"></i>
 						</div> <span class="nav-link-text ms-1">Add Applicant</span>
 				</a></li>
-				<li class="nav-item"><a
-					class="nav-link text-white active bg-gradient-primary" href="">
+				<li class="nav-item"><a class="nav-link text-white"
+					href="billing">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="las la-coins la-2x"></i>
 						</div> <span class="nav-link-text ms-1">Loan Details</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link text-white "
+				<li class="nav-item"><a class="nav-link text-white"
 					href="pending_amount">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -228,8 +212,8 @@
 							<i class="las la-rupee-sign la-2x"></i>
 						</div> <span class="nav-link-text ms-1">Collected Loans</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link text-white "
-					href="transactions">
+
+				<li class="nav-item"><a class="nav-link text-white   " href="">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="las la-credit-card la-2x"></i>
@@ -268,7 +252,7 @@
 			<div class="container-fluid py-1 px-3 ">
 				<nav aria-label="breadcrumb">
 					<h4 class="font-weight-bolder mb-0">
-						Loan Details <i class="las la-coins"></i>
+						Verify Documents <i class="las la-credit-card"></i>
 					</h4>
 				</nav>
 				<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
@@ -387,8 +371,68 @@
 				</div>
 			</div>
 		</nav>
-		<h1>Hello</h1>
+		<!-- Starts from here-->
+		<div id="verifyDocuments">
+			<form class="row g-3">
+				<div class="col-md-8">
+					<div class="d-flex flex-row mb-3">
+						<div class="col-lg-6">
+							<label for="inputEmail4" class="form-label">ID <i
+								class="las la-address-card"></i>
+							</label>
+							<p class="userInfo">${command.id }</p>
+						</div>
+						<div class="col-lg-6">
+							<label for="inputPassword4" class="form-label">Name <i
+								class="las la-user"></i></label>
+							<p class="userInfo">${command.name }</p>
+						</div>
+					</div>
+					<div class="d-flex flex-row mb-3">
+					<div class="col-md-6">
+						<label for="inputAddress" class="form-label">Email <i
+							class="las la-envelope"></i></label>
+						<p class="userInfo">${command.email }</p>
+					</div>
+					<div class="col">
+						<label for="inputAddress2" class="form-label">Address <i
+							class="las la-map-marker"></i></label>
+						<p class="userInfo">${command.address }</p>
+					</div>
+					</div>
+					<div class="d-flex flex-row mb-3">
+					<div class="col">
+						<label for="inputCity" class="form-label">Type of
+							Applicant <i class="las la-user-tag"></i>
+						</label>
+						<p class="userInfo">${command.typeOfApplicant }</p>
+					</div>
+					<div class="col">
+						<label for="inputState" class="form-label">Type of Proof <i
+							class="las la-file"></i></label>
+						<p class="userInfo">${command.typeOfProof }</p>
+					</div>
+					</div>
+					<div class="col">
+						<label for="inputZip" class="form-label">Requested Loan
+							Amount &#8377;
+						</label>
+						<p class="userInfo">${command.loanAmount }&#8377;</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="col-md-6">
+						<label for="inputZip" class="form-label">Proof</label> <img
+							src="../documents/${command.fileName }.jpeg" alt="Image"
+							width="300px" height="400px" class="mt-3" />
+					</div>
+				</div>
 
+				<div class="col-12">
+					<button type="submit" class="btn btn-success" style="width:30%";>Verify</button>
+				</div>
+			</form>
+		</div>
 	</main>
 	<div class="fixed-plugin">
 
@@ -485,10 +529,10 @@
 		</div>
 	</div>
 
-	<script src="js/core/popper.min.js"></script>
-	<script src="js/core/bootstrap.min.js"></script>
-	<script src="js/plugins/perfect-scrollbar.min.js"></script>
-	<script src="js/plugins/smooth-scrollbar.min.js"></script>
+	<script src="../js/core/popper.min.js"></script>
+	<script src="../js/core/bootstrap.min.js"></script>
+	<script src="../js/plugins/perfect-scrollbar.min.js"></script>
+	<script src="../js/plugins/smooth-scrollbar.min.js"></script>
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {

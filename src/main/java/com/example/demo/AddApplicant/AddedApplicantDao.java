@@ -1,5 +1,7 @@
 package com.example.demo.AddApplicant;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class AddedApplicantDao implements AddedApplicantService {
 	public AddedApplicant getUserId(int id) {
 		return repo.getById(id);
 	}
+
+//	@Override
+//	public AddedApplicant getDocuments(int id) {
+//		return repo.findById(id);
+//	}
 
 
 
