@@ -69,7 +69,7 @@
 #allList {
 	margin: 2% 3%;
 	background-color: #fff;
-	padding: 2% 5%;
+	padding: 2% 20% 2% 3%;
 	border-radius: 30px;
 }
 
@@ -407,8 +407,7 @@
 								Type</span> <i class="las la-user-circle"></i></th>
 						<th scope="col"><span class="headingText">Requsted
 								Amount</span> <i class="las la-rupee-sign"></i></th>
-						<th scope="col" style=""><span class="headingText">Verify
-								Documents</span> <i class="las la-question-circle"></i></th>
+						<th scope="col" style=""><span class="headingText">Status</span> <i class="las la-question-circle"></i></th>
 					</tr>
 				</thead>
 				<tbody>
