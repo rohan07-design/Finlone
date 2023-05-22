@@ -81,6 +81,11 @@
   display: none;
 }
 
+a,
+a:hover {
+	color:#fff;
+}
+
 @media ( max-width : 1370px) {
 	#allList .bttn-text {
 		display: none;
@@ -279,7 +284,7 @@
 					id="navbar">
 					<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 						<div class="input-group input-group-outline">
-							<label class="form-label">Type here...</label> <input type="text"
+							<label class="form-label">Enter Name or Email..</label> <input type="text"
 								class="form-control" id="getData">
 						</div>
 					</div>
@@ -428,7 +433,7 @@
 								class="las la-rupee-sign"></i></td>
 							<td><c:if test="${e.status eq 'verified'}">
 									<button class="btn btn-sm btn-success">
-										<span class="btn-text">${e.status }</span> <i
+										<span class="btn-text"><a href="/verifyUser">${e.status }</a></span> <i
 											class="las la-check-circle la-2x"></i>
 									</button>
 								</c:if> <c:if test="${e.status eq 'unverified'}">

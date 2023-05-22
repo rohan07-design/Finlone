@@ -92,4 +92,9 @@ public class AllController {
 		  return "dashboardPages/downloadTransaction";
 	 }
 	 
+	 //verifyUser Mapping
+	 @RequestMapping("/verifyUser")
+	 public String goToVerifyPayment() {
+		 return "notifications/paymentVerification";
+	 }
 }

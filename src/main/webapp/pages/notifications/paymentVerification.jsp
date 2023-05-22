@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<script>
+	let result = confirm('Proceed for Payment..?');
+	if(result==true) {
+		window.location.href="payment";
+	} else {
+		window.location.href="billing";
+	}
+</script>
 </body>
 </html>
