@@ -77,6 +77,10 @@
 	color: #000;
 }
 
+.demohidden {
+  display: none;
+}
+
 @media ( max-width : 1370px) {
 	#allList .bttn-text {
 		display: none;
@@ -276,7 +280,7 @@
 					<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 						<div class="input-group input-group-outline">
 							<label class="form-label">Type here...</label> <input type="text"
-								class="form-control">
+								class="form-control" id="getData">
 						</div>
 					</div>
 					<ul class="navbar-nav  justify-content-end">
@@ -389,7 +393,7 @@
 		</nav>
 
 		<div id="allList">
-			<table class="table">
+			<table class="table" id="allUserData">
 				<thead>
 					<tr>
 						<th scope="col"><span class="headingText">ID</span></th>
@@ -413,7 +417,7 @@
 				<tbody>
 					<c:forEach items="${list }" var="e">
 						<tr>
-							<th scope="row" class="id">${e.id}</th>
+							<td scope="row" class="id">${e.id}</td>
 							<td class="name">${e.name }</td>
 							<td class="number">${e.number }</td>
 							<td class="city">${e.city }</td>
@@ -558,6 +562,7 @@
 		integrity="sha512-D/jdE0CypeVxFadTejKGTzmwyV10c1pxZk/AqjJuZbaJwGMyNHY3q/mTPWqMUnFACfCTunhZUVcd4cV78dK1pQ=="
 		data-cf-beacon='{"rayId":"7b4015c5cf87f4a4","version":"2023.3.0","r":1,"b":1,"token":"1b7cbb72744b40c580f8633c6b62637e","si":100}'
 		crossorigin="anonymous"></script>
+		<script src="js/searchUser.js"></script>
 </body>
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/pages/billing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 06:07:44 GMT -->
