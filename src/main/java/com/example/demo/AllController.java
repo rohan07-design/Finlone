@@ -1,13 +1,20 @@
 package com.example.demo;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.AddApplicant.AddedApplicant;
 import com.example.demo.AddApplicant.AddedApplicantRepo;
@@ -21,6 +28,8 @@ public class AllController {
 	@Autowired
 	AddedApplicantRepo r1;
 	
+	@PersistenceContext
+    private EntityManager entityManager;
 
 	 @RequestMapping("/")
 	 public String dashboard()
@@ -93,8 +102,11 @@ public class AllController {
 	 }
 	 
 	 //verifyUser Mapping
-	 @RequestMapping("/verifyUser")
-	 public String goToVerifyPayment() {
-		 return "notifications/paymentVerification";
+	 @GetMapping("/confirm-payment/{id}")
+	 public RedirectView goToVerifyPayment(@PathVariable int id, ModelMap m) {
+		 Optional<AddedApplicant> userForPayment = r1.findById(id);
+		 AddedApplicant paymentId = entityManager.find(AddedApplicant.class, id);
+		 String paymentUrl = "/payment/" + id;
+		 return new RedirectView(paymentUrl);
 	 }
 }

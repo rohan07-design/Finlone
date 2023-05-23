@@ -78,12 +78,11 @@
 }
 
 .demohidden {
-  display: none;
+	display: none;
 }
 
-a,
-a:hover {
-	color:#fff;
+a, a:hover {
+	color: #fff;
 }
 
 @media ( max-width : 1370px) {
@@ -284,8 +283,8 @@ a:hover {
 					id="navbar">
 					<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 						<div class="input-group input-group-outline">
-							<label class="form-label">Enter Name or Email..</label> <input type="text"
-								class="form-control" id="getData">
+							<label class="form-label">Enter Name or Email..</label> <input
+								type="text" class="form-control" id="getData">
 						</div>
 					</div>
 					<ul class="navbar-nav  justify-content-end">
@@ -416,7 +415,8 @@ a:hover {
 								Type</span> <i class="las la-user-circle"></i></th>
 						<th scope="col"><span class="headingText">Requsted
 								Amount</span> <i class="las la-rupee-sign"></i></th>
-						<th scope="col" style=""><span class="headingText">Status</span> <i class="las la-question-circle"></i></th>
+						<th scope="col" style=""><span class="headingText">Status</span>
+							<i class="las la-question-circle"></i></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -432,14 +432,16 @@ a:hover {
 							<td class="amount">${e.loanAmount }<i
 								class="las la-rupee-sign"></i></td>
 							<td><c:if test="${e.status eq 'verified'}">
-									<button class="btn btn-sm btn-success">
-										<span class="btn-text"><a href="/verifyUser">${e.status }</a></span> <i
+									<button class="btn btn-sm btn-success"
+										onclick="confirmPayment(${e.id})">
+										<span class="btn-text">${e.status }</span> <i
 											class="las la-check-circle la-2x"></i>
 									</button>
 								</c:if> <c:if test="${e.status eq 'unverified'}">
 									<button type="submit" class="btn btn-sm btn-danger">
-										<span class="btn-text"><a href="billing/${e.id}" style="text-decoration:'none';color:#fff;">${e.status }</a></span> <i
-											class="las la-check-circle la-2x"></i>
+										<span class="btn-text"><a href="billing/${e.id}"
+											style="text-decoration: 'none'; color: #fff;">${e.status }</a></span>
+										<i class="las la-check-circle la-2x"></i>
 									</button>
 								</c:if></td>
 						</tr>
@@ -567,7 +569,14 @@ a:hover {
 		integrity="sha512-D/jdE0CypeVxFadTejKGTzmwyV10c1pxZk/AqjJuZbaJwGMyNHY3q/mTPWqMUnFACfCTunhZUVcd4cV78dK1pQ=="
 		data-cf-beacon='{"rayId":"7b4015c5cf87f4a4","version":"2023.3.0","r":1,"b":1,"token":"1b7cbb72744b40c580f8633c6b62637e","si":100}'
 		crossorigin="anonymous"></script>
-		<script src="js/searchUser.js"></script>
+	<script src="js/searchUser.js"></script>
+	<script>
+		function confirmPayment(id) {
+			if (confirm("Are you sure you want to proceed with the payment?")) {
+				window.location.href = "/confirm-payment/"+id;
+			}
+		}
+	</script>
 </body>
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/pages/billing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 06:07:44 GMT -->

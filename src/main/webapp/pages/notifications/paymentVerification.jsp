@@ -10,7 +10,7 @@
 <script>
 	let result = confirm('Proceed for Payment..?');
 	if(result==true) {
-		window.location.href="payment";
+		window.location.href="../payment/"+${specificPayment.id};
 	} else {
 		window.location.href="billing";
 	}
