@@ -32,9 +32,10 @@ public class PaymentController {
 	}
 	
 	//create the order for payment
-	@PostMapping(value="/payment/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping("/userpayment/{id}")
 	@ResponseBody
 	public String createOrder(@RequestBody Map<String, Object> data) throws Exception {
+		System.out.println("hello");
 		System.out.println(data);
 //		int amt = Integer.parseInt(data.get("amount").toString());
 //		var client = new RazorpayClient("rzp_test_b2ljmnm5S5yKeE","SVvPUQOkSoIL9vRL3AUKXy2c");

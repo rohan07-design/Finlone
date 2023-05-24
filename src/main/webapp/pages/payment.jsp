@@ -49,9 +49,6 @@
 <script src="../../../../kit.fontawesome.com/42d5adcbca.js"
 	crossorigin="anonymous"></script>
 
-<link
-	href="../../../../fonts.googleapis.com/iconcc0c.css?family=Material+Icons+Round"
-	rel="stylesheet">
 
 <link id="pagestyle"
 	href="../css/material-dashboard.min1bb8.css?v=3.0.5" rel="stylesheet" />
@@ -328,7 +325,7 @@
 						aria-describedby="amountUpdate">
 				</div>
 				<button type="submit" class="btn btn-success mt-3"
-					onclick="getAmount()">
+					onclick="getAmount(${pay.id})">
 					Proceed <i class="las la-arrow-alt-circle-right"></i>
 				</button>
 				<button type="submit" class="btn btn-danger mt-3">
@@ -432,9 +429,10 @@
 		</div>
 	</div>
 
+	<script src="../js/paymentScript.js"></script>
 	<script src="../js/core/popper.min.js"></script>
 	<script src="../js/core/bootstrap.min.js"></script>
-	<script src="../js/plugins/perfect-scrollbar.min.js"></script>
+	
 	<script src="../js/plugins/smooth-scrollbar.min.js"></script>
 	<script>
     var win = navigator.platform.indexOf('Win') > -1;
@@ -455,7 +453,6 @@
 		data-cf-beacon='{"rayId":"7b4015c5cf87f4a4","version":"2023.3.0","r":1,"b":1,"token":"1b7cbb72744b40c580f8633c6b62637e","si":100}'
 		crossorigin="anonymous"></script>
 
-	<script src="../js/paymentScript.js"></script>
 </body>
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/pages/billing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 06:07:44 GMT -->
