@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +26,7 @@ public class PaymentController {
 	AddedApplicantRepo r1;
 	
 	//get the form for payment
-	@RequestMapping(value="/payment/{id}")
+	@RequestMapping("/payment/{id}")
 	public String PaymentForm(@PathVariable int id, ModelMap m) {
 		AddedApplicant userForPayment = r1.getById(id);
 		m.addAttribute("pay", userForPayment);
@@ -37,17 +39,17 @@ public class PaymentController {
 	public String createOrder(@RequestBody Map<String, Object> data) throws Exception {
 		System.out.println("hello");
 		System.out.println(data);
-//		int amt = Integer.parseInt(data.get("amount").toString());
-//		var client = new RazorpayClient("rzp_test_b2ljmnm5S5yKeE","SVvPUQOkSoIL9vRL3AUKXy2c");
-//		JSONObject options = new JSONObject();
-//		options.put("amount", amt);
-//		options.put("currency", "INR");
-//		options.put("receipt", "txn_123456");
-//		
+		int amt = Integer.parseInt(data.get("amount").toString());
+		var client = new RazorpayClient("rzp_test_b2ljmnm5S5yKeE","SVvPUQOkSoIL9vRL3AUKXy2c");
+		JSONObject options = new JSONObject();
+		options.put("amount", amt*10);
+		options.put("currency", "INR");
+		options.put("receipt", "txn_123456");
 		
 		//creating new order
-//		Order order = client.Orders.create(options);
-//		System.out.println(order);
-		return null;
+		Order order = client.Orders.create(options);
+		System.out.println(order);
+		String orderData = order.toString();
+		return orderData;
 	}
 }
