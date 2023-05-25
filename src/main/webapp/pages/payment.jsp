@@ -51,6 +51,7 @@
 	href="../css/material-dashboard.min1bb8.css?v=3.0.5" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link> 
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"
 	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
@@ -86,6 +87,7 @@
                 alert(response.razorpay_payment_id);
                 alert(response.razorpay_order_id);
                 alert(response.razorpay_signature);
+                swal("Good job!", "You clicked the button!", "success");
               },
               prefill: {
                 name: "",
@@ -263,6 +265,7 @@
 			</form>
 		</div>
 	</main>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 	<!-- <script src="../js/paymentScript.js"></script>-->
 	<script src="../js/core/popper.min.js"></script>
