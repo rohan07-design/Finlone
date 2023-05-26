@@ -1,5 +1,9 @@
 package com.example.demo.Payment;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
@@ -25,6 +29,12 @@ public class PaymentController {
 	@Autowired
 	AddedApplicantRepo r1;
 	
+	@Autowired
+	PaymentService p1;
+	
+	@Autowired
+	TrasnsactionRepo tr;
+	
 	//get the form for payment
 	@RequestMapping("/payment/{id}")
 	public String PaymentForm(@PathVariable int id, ModelMap m) {
@@ -36,7 +46,7 @@ public class PaymentController {
 	//create the order for payment
 	@PostMapping("/userpayment/{id}")
 	@ResponseBody
-	public String createOrder(@RequestBody Map<String, Object> data) throws Exception {
+	public String createOrder(@RequestBody Map<String, Object> data,@PathVariable int id) throws Exception {
 		System.out.println("hello");
 		System.out.println(data);
 		int amt = Integer.parseInt(data.get("amount").toString());
@@ -46,9 +56,36 @@ public class PaymentController {
 		options.put("currency", "INR");
 		options.put("receipt", "txn_123456");
 		
+//		//get the data of the particular id
+		AddedApplicant a1 = r1.getById(id);
+//		
+//		//create the object of the class
+		TransactionsDetails t1 = new TransactionsDetails();
+		
+//		
+//		
 		//creating new order
 		Order order = client.Orders.create(options);
 		System.out.println(order);
+		t1.setOrderId(order.get("id").toString()); //orderId
+		t1.setAmount(order.get("amount").toString()); //amount
+		t1.setName(a1.getName()); //name
+		t1.setEmail(a1.getEmail()); //email
+		t1.setMobNo(a1.getNumber()); //mobNo
+		t1.setAmount_due(order.get("amount_due").toString()); //amount_due
+		t1.setAmount_paid(order.get("amount_paid").toString()); //amount_paid
+		t1.setReceipt(order.get("receipt").toString()); //receipt
+		t1.setStatus(order.get("status").toString()); //status
+		
+		Date timestamp =  order.get("created_at");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		
+        //Date newDate = dateFormat.parse(timestamp);		
+		t1.setCreatedAtDate(timestamp);
+		
+		
+		TransactionsDetails savedOrder = tr.save(t1);
+		
 		String orderData = order.toString();
 		return orderData;
 	}

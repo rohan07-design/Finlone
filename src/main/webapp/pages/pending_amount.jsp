@@ -4,6 +4,8 @@
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/pages/billing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Apr 2023 06:07:43 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
   <meta charset="utf-8" />
@@ -41,11 +43,11 @@
     content="Material Dashboard 2 is a beautiful Bootstrap 5 admin dashboard with a large number of components, designed to look beautiful and organized. If you are looking for a tool to manage and visualize data about your business, this dashboard is the thing for you." />
   <meta property="og:site_name" content="Creative Tim" />
 
-  <link rel="stylesheet" type="text/css"
-    href="../../../fonts.googleapis.com/cssa882.css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-
+  
   <link href="css/nucleo-icons.css" rel="stylesheet" />
   <link href="css/nucleo-svg.css" rel="stylesheet" />
+  
+  
 
   <script src="../../../kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
@@ -57,12 +59,18 @@
     .async-hide {
       opacity: 0 !important
     }
+    
+    .container {
+      width: fit-content;
+      margin: auto;
+    }
+    
+    table {
+      background-color: #fff;
+    }
 
     #allList {
-      margin: 2% 3%;
-      background-color: #fff;
-      padding: 2% 5%;
-      border-radius: 30px;
+     border-radius: 30px;
     }
 
     #allList th {
@@ -360,82 +368,38 @@
             <option value="3">Monthly</option>
           </select>
     </div>
-    <div id="allList" class="mt-4">
-      <table class="table">
+    <div class="container mt-4">
+      <table class="table" id="allList">
         <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name <i class="las la-user"></i></th>
                 <th scope="col">Contact No <i class="las la-phone"></i></th>
-                <th scope="col">Address <i class="las la-map-marker"></i></th>
+                <th scope="col">Amount Received <i class="las la-map-marker"></i></th>
+                <th scope="col">Amount Paid <i class="las la-map-marker"></i></th>
+                <th scope="col">Amount Pending <i class="las la-map-marker"></i></th>
                 <th scope="col">Email Address <i class="las la-envelope"></i></th>
-                <th scope="col">User <i class="las la-user-circle"></i></th>
-                <th scope="col">Pending Amount <i class="las la-rupee-sign"></i></th>
+                <th scope="col">order Id<i class="las la-user-circle"></i></th>
+                <th scope="col">Received Date <i class="las la-rupee-sign"></i></th>
                 <th scope="col" style="padding-left:2rem;">Due Date <i class="las la-question-circle"></i></th>
               </tr>
         </thead>
         <tbody>
+        <c:forEach items="${transactionDetails }" var="e">
+        <c:set var="pendingAmt" value="${e.amount - e.amount_paid }" />
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>123456789</td>
-            <td>Pune</td>
-            <td>mark@gmail.com</td>
-            <td>Customer</td>
-            <td>120000 <i class="las la-rupee-sign"></i></td>
-            <td>12/03/2022</td>
-            
+            <th scope="row">${e.id}</th>
+            <td>${e.name}</td>
+            <td>${e.mobNo}</td>
+            <td>${e.amount}</td>
+            <td>${e.amount_paid}</td>
+            <td>${pendingAmt}</td>
+            <td>${e.email} <i class="las la-rupee-sign"></i></td>
+            <td>${e.orderId}</td>
+            <td>${e.createdAtDate}</td>
+            <td>${e.dueDate }</td>
           </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>123456789</td>
-            <td>Pune</td>
-            <td>mark@gmail.com</td>
-            <td>Customer</td>
-            <td>120000 <i class="las la-rupee-sign"></i></td>
-            <td>12/03/2022</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>123456789</td>
-            <td>Pune</td>
-            <td>mark@gmail.com</td>
-            <td>Customer</td>
-            <td>120000 <i class="las la-rupee-sign"></i></td>
-            <td>12/03/2022</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>123456789</td>
-            <td>Pune</td>
-            <td>mark@gmail.com</td>
-            <td>Customer</td>
-            <td>120000 <i class="las la-rupee-sign"></i></td>
-            <td>12/03/2022</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>123456789</td>
-            <td>Pune</td>
-            <td>mark@gmail.com</td>
-            <td>Customer</td>
-            <td>120000 <i class="las la-rupee-sign"></i></td>
-            <td>12/03/2022</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>123456789</td>
-            <td>Pune</td>
-            <td>mark@gmail.com</td>
-            <td>Customer</td>
-            <td>120000 <i class="las la-rupee-sign"></i></td>
-            <td>12/03/2022</td>
-          </tr>
+          </c:forEach>
         </tbody>
       </table> 
     </div>
@@ -523,7 +487,22 @@
       </div>
     </div>
   </div>
-
+<script>
+    // JavaScript to adjust the background color based on the table width
+    var container = document.querySelector(".container");
+    var table = document.getElementById("myTable");
+    var tableWidth = table.offsetWidth;
+    
+    // Define the minimum and maximum widths for color scale
+    var minWidth = 300;
+    var maxWidth = 800;
+    
+    // Calculate the color value based on the table width
+    var colorValue = Math.floor((tableWidth - minWidth) / (maxWidth - minWidth) * 255);
+    
+    // Set the background color dynamically
+    container.style.backgroundColor = "rgb(" + 255 + ", " + 255 + ", " + 255 + ")";
+  </script>
   <script src="js/core/popper.min.js"></script>
   <script src="js/core/bootstrap.min.js"></script>
   <script src="js/plugins/perfect-scrollbar.min.js"></script>

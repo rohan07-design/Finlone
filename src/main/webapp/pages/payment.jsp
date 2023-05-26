@@ -87,7 +87,8 @@
                 alert(response.razorpay_payment_id);
                 alert(response.razorpay_order_id);
                 alert(response.razorpay_signature);
-                swal("Good job!", "You clicked the button!", "success");
+                swal("Good job!", "Payment Successfull..!!", "success");
+                window.location.href="../billing";
               },
               prefill: {
                 name: "",
@@ -110,6 +111,7 @@
               alert(response.error.reason);
               alert(response.error.metadata.order_id);
               alert(response.error.metadata.payment_id);
+              swal("Oops!", "Something went wrong..!!", "error");
             });
             setTimeout(() => {
               rzp.open();
@@ -119,6 +121,7 @@
         error: function (error) {
           console.log("error is there");
           alert("something wrong..!!");
+          swal("Oops!", "Something went wrong..!!", "error");
         },
       });
     };

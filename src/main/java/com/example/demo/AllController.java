@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.AddApplicant.AddedApplicant;
 import com.example.demo.AddApplicant.AddedApplicantRepo;
+import com.example.demo.Payment.TransactionsDetails;
 
 @Controller
 public class AllController {
@@ -52,9 +56,22 @@ public class AllController {
 	 }
 	 
 	 @RequestMapping("/pending_amount")
-	 public String pendingAmount()
+	 public String pendingAmount(ModelMap m)
 	 {
-		  return "pending_amount";
+		 List<TransactionsDetails> l1 = c1.getTransactionApplicant(); 
+		 
+		 for (TransactionsDetails transaction : l1) {
+		    Date currentDate = transaction.getCreatedAtDate();
+		    Calendar calendar = Calendar.getInstance();
+	        calendar.setTime(currentDate);
+	        
+	        //add 3 yrs
+	        calendar.add(Calendar.YEAR, 3);
+	        Date updatedDate = calendar.getTime();
+	        transaction.setDueDate(updatedDate);
+	        m.addAttribute("transactionDetails", l1);
+		 }
+		 return "pending_amount";
 	 }
 	 
 	 @RequestMapping("/collectedLoans")
