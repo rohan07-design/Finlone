@@ -211,9 +211,10 @@
 					</div>
 				</div>
 			</form>
-			<c:forEach items="${dataList }" var="e">
 			<div id="allDetails">
-				<p>${e.name }</p>
+			<c:forEach items="${dataList}" var="e">
+				<p>${e.id}</p>
+				</c:forEach>
 			</div>
 		</div>
 	</main>
