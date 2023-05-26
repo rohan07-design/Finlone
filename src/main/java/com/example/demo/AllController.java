@@ -10,7 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +23,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.AddApplicant.AddedApplicant;
 import com.example.demo.AddApplicant.AddedApplicantRepo;
+import com.example.demo.Payment.PaymentService;
 import com.example.demo.Payment.TransactionsDetails;
+import com.example.demo.Payment.TrasnsactionRepo;
 
 @Controller
 public class AllController {
@@ -31,6 +35,12 @@ public class AllController {
 	
 	@Autowired
 	AddedApplicantRepo r1;
+	
+	@Autowired
+	TrasnsactionRepo tRepo;
+	
+	@Autowired
+	PaymentService pser;
 	
 	@PersistenceContext
     private EntityManager entityManager;

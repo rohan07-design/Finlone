@@ -3,12 +3,15 @@ package com.example.demo.Payment;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -88,5 +91,17 @@ public class PaymentController {
 		
 		String orderData = order.toString();
 		return orderData;
+	}
+	
+	
+	@PostMapping("/getAllTransactions")
+	public String demo(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+            @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+            ModelMap model) {
+		System.out.println(startDate);
+		List<TransactionsDetails> dataList = tr.findByDateRange(startDate, endDate);
+		System.out.println(dataList);
+        model.addAttribute("dataList", dataList);
+		return "/dashboardPages/downloadTransaction";
 	}
 }
