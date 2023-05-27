@@ -397,7 +397,7 @@
             <td>${e.email} <i class="las la-rupee-sign"></i></td>
             <td>${e.orderId}</td>
             <td>${e.createdAtDate}</td>
-            <td>${e.dueDate }</td>
+            <td>${e.dueDate}</td>
           </tr>
           </c:forEach>
         </tbody>

@@ -5,6 +5,9 @@
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <!-- /Added by HTTrack -->
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <head>
 <meta charset="utf-8" />
@@ -49,6 +52,37 @@
 <script src="../../../../kit.fontawesome.com/42d5adcbca.js"
 	crossorigin="anonymous"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+	function downloadDataAsPdf() {
+		// Retrieve the table data
+		var tableData = [];
+		$('#allData tbody tr').each(function(row, tr) {
+			var rowData = [];
+			$(tr).find('td').each(function(col, td) {
+				rowData.push($(td).text());
+			});
+			tableData.push(rowData);
+		});
+
+		// Send the table data to the controller via AJAX
+		$.ajax({
+			type : 'POST',
+			url : '/download',
+			data : JSON.stringify(tableData),
+			contentType : 'application/json',
+			success : function(response) {
+				// Handle the success response, e.g., display a success message or redirect to a success page
+			},
+			error : function(xhr, status, error) {
+				// Handle the error response, e.g., display an error message
+			}
+		});
+	}
+</script>
+
+
 <link
 	href="../../../../fonts.googleapis.com/iconcc0c.css?family=Material+Icons+Round"
 	rel="stylesheet">
@@ -64,7 +98,7 @@
 
 #container {
 	background-color: #fff;
-	margin: 5% 10%;
+	margin: 5% 10% 3% 10%;
 	padding: 4% 6%;
 	border-radius: 20px;
 }
@@ -81,6 +115,12 @@
 
 #submitData {
 	margin-top: auto;
+}
+
+#allDetails {
+	background-color: #fff;
+	margin: 0% 3%;
+	padding: 2% 3%;
 }
 </style>
 <script>
@@ -211,11 +251,47 @@
 					</div>
 				</div>
 			</form>
-			<div id="allDetails">
-			<c:forEach items="${dataList}" var="e">
-				<p>${e.id}</p>
-				</c:forEach>
+		</div>
+		<div id="allDetails">
+			<table class="table" id="allData">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Name <i class="las la-user"></i></th>
+						<th scope="col">Contact No <i class="las la-phone"></i></th>
+						<th scope="col">Amount Received <i class="las la-map-marker"></i></th>
+						<th scope="col">Amount Paid <i class="las la-map-marker"></i></th>
+						<th scope="col">Amount Pending <i class="las la-map-marker"></i></th>
+						<th scope="col">Email Address <i class="las la-envelope"></i></th>
+						<th scope="col">order Id<i class="las la-user-circle"></i></th>
+						<th scope="col">Received Date <i class="las la-rupee-sign"></i></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${dataList}" var="e">
+						<c:set var="pendingAmt" value="${e.amount - e.amount_paid }" />
+						<tr>
+
+							<th scope="row">${e.id}</th>
+							<td>${e.name}</td>
+							<td>${e.mobNo}</td>
+							<td>${e.amount}</td>
+							<td>${e.amount_paid}</td>
+							<td>${pendingAmt}</td>
+							<td>${e.email}<i class="las la-rupee-sign"></i></td>
+							<td>${e.orderId}</td>
+							<td>${e.createdAtDate}</td>
+							<td>${e.dueDate }</td>
+
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div class="d-grid gap-2 col-3 mx-auto">
+				<button class="btn btn-primary"><a href="/download">Download
+					Transactions</a></button>
 			</div>
+
 		</div>
 	</main>
 	<div class="fixed-plugin">
