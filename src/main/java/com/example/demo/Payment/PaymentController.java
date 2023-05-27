@@ -82,14 +82,12 @@ public class PaymentController {
 		options.put("currency", "INR");
 		options.put("receipt", "txn_123456");
 
-		//		//get the data of the particular id
+		//get the data of the particular id
 		AddedApplicant a1 = r1.getById(id);
-		//		
-		//		//create the object of the class
+		
+		//create the object of the class
 		TransactionsDetails t1 = new TransactionsDetails();
-
-		//		
-		//		
+		
 		//creating new order
 		Order order = client.Orders.create(options);
 		System.out.println(order);
@@ -102,6 +100,7 @@ public class PaymentController {
 		t1.setAmount_paid(order.get("amount_paid").toString()); //amount_paid
 		t1.setReceipt(order.get("receipt").toString()); //receipt
 		t1.setStatus(order.get("status").toString()); //status
+		t1.setTypeOfApplicant(a1.getTypeOfApplicant());
 
 		Date timestamp =  order.get("created_at");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -147,7 +146,7 @@ public class PaymentController {
 	        String logoPath = "C:\\Users\\Rohan Parande\\eclipse-workspace\\Project\\src\\main\\resources\\static\\img\\logo2.png";
 	        Image logo = Image.getInstance(logoPath);
 	        logo.setAlignment(Element.ALIGN_CENTER);
-	        logo.scaleToFit(150, 150); // Adjust the logo size as needed
+	        logo.scaleToFit(120, 120); // Adjust the logo size as needed
 
 	        Paragraph companyParagraph = new Paragraph(companyName, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16));
 	        companyParagraph.setAlignment(Element.ALIGN_CENTER);

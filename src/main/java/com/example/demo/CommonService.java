@@ -10,6 +10,5 @@ public interface CommonService {
 	List<AddedApplicant> getAllApplicants();
 
 	List<TransactionsDetails> getTransactionApplicant();
-
-
+	
 }

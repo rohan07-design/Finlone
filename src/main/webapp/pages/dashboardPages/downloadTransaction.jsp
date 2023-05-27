@@ -122,6 +122,10 @@
 	margin: 0% 3%;
 	padding: 2% 3%;
 }
+
+a {
+	color:#fff;
+}
 </style>
 <script>
 	(function(a, s, y, n, c, h, i, d, e) {

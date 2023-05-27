@@ -20,6 +20,14 @@ public class TransactionsDetails {
 	private Date createdAtDate;
 	private Date dueDate;
 	
+	private String typeOfApplicant;
+	
+	public String getTypeOfApplicant() {
+		return typeOfApplicant;
+	}
+	public void setTypeOfApplicant(String typeOfApplicant) {
+		this.typeOfApplicant = typeOfApplicant;
+	}
 	public Date getDueDate() {
 		return dueDate;
 	}

@@ -20,5 +20,8 @@ public class PaymentTransactionDao implements PaymentService{
 //		pr.saveAll(order);
 	}
 
+	public List<TransactionsDetails> getCustomerApplicants() {
+        return pr.findByTypeOfApplicant("customer");
+    }
 
 }
